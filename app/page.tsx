@@ -100,6 +100,44 @@ const PROJECTS = [
     ],
     arch: ["PDF Upload", "PyMuPDF Parser", "FAISS Retriever", "LLM Analyzer", "Score + Rewrite"],
   },
+  {
+    id: 4,
+    title: "Corrective RAG Agent",
+    tagline: "Self-correcting RAG system with document grading & web search fallback",
+    description:
+      "A multi-stage Retrieval-Augmented Generation system powered by LangGraph. Grades retrieved document relevance using Claude 4.5 Sonnet, transforms query intent when needed, and dynamically falls back to Tavily web search when vector data is insufficient.",
+    stack: ["LangGraph", "LangChain", "Qdrant", "Claude 4.5", "OpenAI Embeddings", "Tavily", "Streamlit"],
+    color: "#10B981",
+    accent: "from-emerald-500 to-teal-600",
+    github: "https://github.com/nishant264/Corrective-_RAG",
+    demo: "#",
+    stats: { stars: 14, forks: 5 },
+    challenges: [
+      "Implementing deterministic relevance grading to eliminate hallucinations",
+      "Orchestrating smooth transitions between Qdrant vector store and Tavily web search",
+      "Building an interactive Streamlit UI showing real-time multi-agent decision steps",
+    ],
+    arch: ["User Query", "Qdrant Vector Store", "Claude 4.5 Relevance Grader", "Query Rewriter / Tavily Search", "Response Generator"],
+  },
+  {
+    id: 5,
+    title: "Gemini + MCP Playground",
+    tagline: "Secure AI agent querying SQL databases via Model Context Protocol",
+    description:
+      "Full-stack AI data agent combining Google Gemini, Agno framework, and a custom Model Context Protocol (MCP) server. Executes natural language queries against SQLite with strict read-only security guardrails and single-click multi-format data exports.",
+    stack: ["Google Gemini", "MCP Protocol", "Agno", "SQLite", "Python", "Streamlit"],
+    color: "#F59E0B",
+    accent: "from-amber-500 to-orange-600",
+    github: "https://github.com/nishant264/MCP-Server-data-",
+    demo: "#",
+    stats: { stars: 16, forks: 6 },
+    challenges: [
+      "Enforcing SQL keyword blocking and multi-statement validation for read-only safety",
+      "Building a custom local MCP server without third-party Docker or API bottlenecks",
+      "Enabling instant agent-driven export to CSV, JSON, and Markdown formats",
+    ],
+    arch: ["Natural Language Input", "Streamlit Web App", "Gemini AI Agent (Agno)", "Custom MCP Server (Guardrails)", "SQLite Database"],
+  },
 ];
 
 const BLOGS = [
