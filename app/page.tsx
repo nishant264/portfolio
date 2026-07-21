@@ -64,44 +64,6 @@ const PROJECTS = [
   },
   {
     id: 2,
-    title: "AI Data Analyst Agent",
-    tagline: "Natural language → SQL → insight in seconds",
-    description:
-      "Conversational data analyst that translates plain English questions into SQL queries, executes them, and returns beautifully formatted insights with charts. Supports multiple database schemas with zero configuration.",
-    stack: ["LangChain", "OpenAI API", "FastAPI", "SQLite", "Pandas", "Recharts"],
-    color: "#06B6D4",
-    accent: "from-cyan-500 to-blue-600",
-    github: "https://github.com/nishant264",
-    demo: "#",
-    stats: { stars: 31, forks: 12 },
-    challenges: [
-      "Accurate text-to-SQL for complex joins and aggregations",
-      "Schema introspection without exposing sensitive table names",
-      "Chart type selection based on query semantics",
-    ],
-    arch: ["NL Question", "LLM (schema-aware)", "SQL Engine", "Pandas Processor", "Chart + Text Output"],
-  },
-  {
-    id: 3,
-    title: "AI Resume Analyzer",
-    tagline: "ATS-grade resume scoring with actionable improvement plans",
-    description:
-      "Analyzes resumes against job descriptions using RAG-enhanced LLM pipelines. Returns an ATS compatibility score, keyword gap analysis, section-level rewrites, and a tailored improvement plan — all in under 10 seconds.",
-    stack: ["LangChain", "FAISS", "Gemini API", "FastAPI", "PyMuPDF", "Streamlit"],
-    color: "#8B5CF6",
-    accent: "from-violet-500 to-purple-700",
-    github: "https://github.com/nishant264",
-    demo: "#",
-    stats: { stars: 18, forks: 6 },
-    challenges: [
-      "Chunk-aware RAG over PDF resumes with noisy formatting",
-      "Generating diffs (not just suggestions) for each section",
-      "Keeping latency under 10s end-to-end on free-tier compute",
-    ],
-    arch: ["PDF Upload", "PyMuPDF Parser", "FAISS Retriever", "LLM Analyzer", "Score + Rewrite"],
-  },
-  {
-    id: 4,
     title: "Corrective RAG Agent",
     tagline: "Self-correcting RAG system with document grading & web search fallback",
     description:
@@ -120,7 +82,7 @@ const PROJECTS = [
     arch: ["User Query", "Qdrant Vector Store", "Claude 4.5 Relevance Grader", "Query Rewriter / Tavily Search", "Response Generator"],
   },
   {
-    id: 5,
+    id: 3,
     title: "Gemini + MCP Playground",
     tagline: "Secure AI agent querying SQL databases via Model Context Protocol",
     description:
