@@ -25,10 +25,10 @@ const SKILLS = {
     icon: Cpu,
     items: ["LangGraph", "LangChain", "RAG Pipelines", "Prompt Engineering", "Gemini API", "OpenAI API"],
   },
-  "Backend": {
+  "Frontend & UI": {
     color: "#06B6D4",
-    icon: Code2,
-    items: ["Python", "FastAPI", "SQL", "PostgreSQL", "REST APIs"],
+    icon: Globe,
+    items: ["React", "Next.js", "Tailwind CSS", "TypeScript", "Streamlit", "JavaScript"],
   },
   "Dev Tools": {
     color: "#8B5CF6",
@@ -620,9 +620,9 @@ function AboutSection() {
                 color: "#06B6D4",
               },
               {
-                icon: Code2,
-                title: "Backend Engineer",
-                desc: "FastAPI services with async handlers, database integration, and containerised deployments on cloud.",
+                icon: Globe,
+                title: "Frontend & UI Developer",
+                desc: "Creating responsive web interfaces and interactive AI dashboards using React, Next.js, and Streamlit.",
                 color: "#8B5CF6",
               },
             ].map((card, i) => (
