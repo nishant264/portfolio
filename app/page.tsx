@@ -455,7 +455,7 @@ function HeroSection() {
             letterSpacing: "0.01em",
           }}
         >
-          AI & DS student @ JECRC University. I build agentic AI systems that actually ship — from RAG
+          AI & DS student @ JECRC Foundation. I build agentic AI systems that actually ship — from RAG
           pipelines to multi-agent orchestration.
         </motion.p>
 
@@ -579,7 +579,7 @@ function AboutSection() {
               variants={fadeUp}
               style={{ color: "var(--text-secondary)", lineHeight: 1.75, fontSize: 15.5, marginBottom: 20 }}
             >
-              I'm a B.Tech AI & DS student at JECRC University, Jaipur, passionate about building practical
+              I'm a B.Tech AI & DS student at JECRC Foundation, Jaipur, passionate about building practical
               AI systems that go beyond demos. I work with multi-agent orchestration, RAG pipelines, and
               LLM-backed APIs — focusing on reliability, latency, and real-world deployability.
             </motion.p>
@@ -594,7 +594,7 @@ function AboutSection() {
               {[
                 { icon: MapPin, text: "Jaipur, Rajasthan, India" },
                 { icon: Briefcase, text: "Open to full-time / internship roles" },
-                { icon: BookOpen, text: "B.Tech AI & DS — JECRC University (2025)" },
+                { icon: BookOpen, text: "B.Tech AI & DS — JECRC Foundation (2025)" },
               ].map(({ icon: Icon, text }) => (
                 <div key={text} style={{ display: "flex", alignItems: "center", gap: 10, color: "var(--text-muted)", fontSize: 14 }}>
                   <Icon size={15} color="#6366F1" />
