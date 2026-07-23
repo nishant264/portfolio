@@ -100,6 +100,25 @@ const PROJECTS = [
     ],
     arch: ["Natural Language Input", "Streamlit Web App", "Gemini AI Agent (Agno)", "Custom MCP Server (Guardrails)", "SQLite Database"],
   },
+  {
+    id: 4,
+    title: "Autonomous Backend Architecture Swarm",
+    tagline: "Multi-agent system that autonomously generates complete backend plans from a product idea",
+    description:
+      "A three-agent AI system powered by Agency Swarm that takes a product idea and autonomously produces a complete backend plan — from feature requirements through system architecture to deployment infrastructure. Features structured multi-agent orchestration with dependency-gated task handoffs between Product Manager, Systems Architect, and DevOps Engineer agents, plus shared context state and full conversation logging.",
+    stack: ["Agency Swarm", "Python", "Pydantic", "OpenAI API", "Streamlit"],
+    color: "#8B5CF6",
+    accent: "from-violet-500 to-purple-600",
+    github: "https://github.com/nishant264/agentic_service",
+    demo: "#",
+    stats: { stars: 12, forks: 4 },
+    challenges: [
+      "Orchestrating three agents with dependency-gated task handoffs to guarantee sequential execution without deadlocks",
+      "Designing Pydantic-validated tools with shared context state, idempotency guards, and type-safe outputs",
+      "Building a structured prompt architecture with persona + responsibilities + constraints layers to keep agents in their lanes",
+    ],
+    arch: ["Product Idea", "Product Manager (DefineRequirements)", "Systems Architect (DesignArchitecture)", "DevOps Engineer (PlanDeployment)", "Complete Backend Spec"],
+  },
 ];
 
 const BLOGS = [
