@@ -13,8 +13,8 @@ import {
 /* ── Data ─────────────────────────────────────────────────── */
 const NAV_LINKS = [
   { label: "About", href: "#about" },
-  { label: "Skills", href: "#skills" },
   { label: "Projects", href: "#projects" },
+  { label: "Skills", href: "#skills" },
   { label: "Blog", href: "#blog" },
   { label: "Contact", href: "#contact" },
 ];
@@ -23,22 +23,27 @@ const SKILLS = {
   "AI & Agents": {
     color: "#6366F1",
     icon: Cpu,
-    items: ["LangGraph", "LangChain", "RAG Pipelines", "Prompt Engineering", "Gemini API", "OpenAI API"],
+    items: ["LangGraph", "LangChain", "Agency Swarm", "Agno", "RAG Pipelines", "Prompt Engineering", "Gemini API", "OpenAI API"],
   },
   "Frontend & UI": {
     color: "#06B6D4",
     icon: Globe,
     items: ["React", "Next.js", "Tailwind CSS", "TypeScript", "Streamlit", "JavaScript"],
   },
-  "Dev Tools": {
+  "Backend & APIs": {
     color: "#8B5CF6",
-    icon: Terminal,
-    items: ["Git", "Docker", "Linux", "VS Code", "Vercel"],
+    icon: Code2,
+    items: ["Python", "FastAPI", "REST APIs", "Pydantic", "PostgreSQL", "SQLite"],
   },
   "Vector & Data": {
     color: "#10B981",
     icon: Database,
-    items: ["ChromaDB", "FAISS", "Pandas", "NumPy", "Matplotlib"],
+    items: ["ChromaDB", "Qdrant", "FAISS", "OpenAI Embeddings", "Pandas", "NumPy", "Matplotlib"],
+  },
+  "Developer Workflow": {
+    color: "#F59E0B",
+    icon: Terminal,
+    items: ["Git", "GitHub", "Docker", "Linux", "VS Code", "Vercel"],
   },
 };
 
@@ -1259,8 +1264,8 @@ export default function Home() {
       <main>
         <HeroSection />
         <AboutSection />
-        <SkillsSection />
         <ProjectsSection />
+        <SkillsSection />
         <BlogSection />
         <ContactSection />
       </main>
