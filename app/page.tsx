@@ -96,7 +96,7 @@ const PROJECTS = [
     color: "#F59E0B",
     accent: "from-amber-500 to-orange-600",
     github: "https://github.com/nishant264/MCP-Server-data-",
-    demo: "#",
+    demo: "https://2d2qbxcdf78ghovjyfzuu3.streamlit.app/",
     stats: { stars: 16, forks: 6 },
     challenges: [
       "Enforcing SQL keyword blocking and multi-statement validation for read-only safety",
