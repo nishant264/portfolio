@@ -102,24 +102,6 @@ const PROJECTS = [
     ],
     arch: ["Natural Language Input", "Streamlit Web App", "Groq AI Agent (Agno)", "Database Tools (Guardrails)", "SQLite Database"],
   },
-  {
-    id: 1,
-    title: "AI Customer Support Platform",
-    tagline: "Multi-agent system that handles 80% of queries autonomously",
-    description:
-      "A production-grade customer support platform powered by LangGraph multi-agent workflows. Routes queries intelligently across specialized agents for FAQ, billing, and escalation — with full audit trails and human-in-the-loop fallback.",
-    stack: ["LangGraph", "FastAPI", "ChromaDB", "Gemini API", "PostgreSQL", "Docker"],
-    color: "#6366F1",
-    accent: "from-indigo-500 to-violet-600",
-    github: "https://github.com/nishant264",
-    stats: { stars: 24, forks: 8 },
-    challenges: [
-      "Designing deterministic agent routing without hallucination",
-      "Streaming partial responses to the UI under 200ms",
-      "Managing context windows across multi-turn sessions",
-    ],
-    arch: ["User Query", "Router Agent", "FAQ Agent / Billing Agent / Escalation Agent", "ChromaDB + PostgreSQL", "Response"],
-  },
 ];
 
 const BLOGS = [
