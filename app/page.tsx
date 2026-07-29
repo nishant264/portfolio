@@ -766,8 +766,6 @@ function ArchDiagram({ nodes, color }: { nodes: string[]; color: string }) {
 function ProjectsSection() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
-  const [activeProject, setActiveProject] = useState<number | null>(null);
-
   return (
     <section id="projects" className="section" style={{ padding: "6rem 24px" }}>
       <div ref={ref} style={{ maxWidth: 1100, margin: "0 auto" }}>
@@ -793,7 +791,6 @@ function ProjectsSection() {
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: i * 0.12, duration: 0.55, ease: "easeOut" }}
               className="project-card"
-              onClick={() => setActiveProject(activeProject === project.id ? null : project.id)}
             >
               {/* Card header */}
               <div style={{ padding: "28px 32px 24px" }}>
@@ -856,7 +853,6 @@ function ProjectsSection() {
                 <div style={{ display: "flex", gap: 10, marginTop: 20, alignItems: "center", flexWrap: "wrap" }}>
                   <a
                     href={project.github}
-                    onClick={(e) => e.stopPropagation()}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="btn-primary"
@@ -864,38 +860,11 @@ function ProjectsSection() {
                   >
                     <Github size={14} /> GitHub
                   </a>
-                  <button
-                    style={{
-                      marginLeft: "auto",
-                      background: "none",
-                      border: "none",
-                      color: "var(--text-muted)",
-                      cursor: "pointer",
-                      display: "flex",
-                      alignItems: "center",
-                      gap: 5,
-                      fontSize: 13,
-                    }}
-                  >
-                    {activeProject === project.id ? "Show less" : "Architecture & challenges"}
-                    <ChevronRight
-                      size={14}
-                      style={{ transform: activeProject === project.id ? "rotate(90deg)" : "rotate(0deg)", transition: "transform 0.2s" }}
-                    />
-                  </button>
                 </div>
               </div>
 
               {/* Expandable section */}
-              <AnimatePresence>
-                {activeProject === project.id && (
-                  <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: "auto", opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.35, ease: "easeOut" }}
-                    style={{ overflow: "hidden" }}
-                  >
+              <div>
                     <div style={{
                       borderTop: "1px solid var(--border)",
                       padding: "28px 32px",
@@ -936,11 +905,9 @@ function ProjectsSection() {
                           <Eye size={14} />
                           Screenshots / demo video
                         </div>
-                      </div>
                     </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
+                    </div>
+                  </div>
             </motion.div>
           ))}
         </div>
