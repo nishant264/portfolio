@@ -5,7 +5,7 @@ import { motion, useInView, AnimatePresence, useScroll, useTransform } from "fra
 import {
   GitBranch as Github, Link as Linkedin, Mail, ExternalLink, Download, Menu, X,
   Terminal, Cpu, Database, Code2, Zap, ArrowRight, ChevronRight,
-  Play, Star, GitFork, Eye, MessageSquare, Clock,
+  Star, GitFork, Eye, MessageSquare, Clock,
   CheckCircle2, Circle, BookOpen, Send, MapPin, Briefcase,
   ArrowUpRight, Sparkles, Globe, Shield
 } from "lucide-react";
@@ -49,63 +49,6 @@ const SKILLS = {
 
 const PROJECTS = [
   {
-    id: 1,
-    title: "AI Customer Support Platform",
-    tagline: "Multi-agent system that handles 80% of queries autonomously",
-    description:
-      "A production-grade customer support platform powered by LangGraph multi-agent workflows. Routes queries intelligently across specialized agents for FAQ, billing, and escalation — with full audit trails and human-in-the-loop fallback.",
-    stack: ["LangGraph", "FastAPI", "ChromaDB", "Gemini API", "PostgreSQL", "Docker"],
-    color: "#6366F1",
-    accent: "from-indigo-500 to-violet-600",
-    github: "https://github.com/nishant264",
-    demo: "#",
-    stats: { stars: 24, forks: 8 },
-    challenges: [
-      "Designing deterministic agent routing without hallucination",
-      "Streaming partial responses to the UI under 200ms",
-      "Managing context windows across multi-turn sessions",
-    ],
-    arch: ["User Query", "Router Agent", "FAQ Agent / Billing Agent / Escalation Agent", "ChromaDB + PostgreSQL", "Response"],
-  },
-  {
-    id: 2,
-    title: "Corrective RAG Agent",
-    tagline: "Self-correcting RAG system with document grading & web search fallback",
-    description:
-      "A multi-stage Retrieval-Augmented Generation system powered by LangGraph. Grades retrieved document relevance using Claude 4.5 Sonnet, transforms query intent when needed, and dynamically falls back to Tavily web search when vector data is insufficient.",
-    stack: ["LangGraph", "LangChain", "Qdrant", "Claude 4.5", "OpenAI Embeddings", "Tavily", "Streamlit"],
-    color: "#10B981",
-    accent: "from-emerald-500 to-teal-600",
-    github: "https://github.com/nishant264/Corrective-_RAG",
-    demo: "#",
-    stats: { stars: 14, forks: 5 },
-    challenges: [
-      "Implementing deterministic relevance grading to eliminate hallucinations",
-      "Orchestrating smooth transitions between Qdrant vector store and Tavily web search",
-      "Building an interactive Streamlit UI showing real-time multi-agent decision steps",
-    ],
-    arch: ["User Query", "Qdrant Vector Store", "Claude 4.5 Relevance Grader", "Query Rewriter / Tavily Search", "Response Generator"],
-  },
-  {
-    id: 3,
-    title: "Gemini + MCP Playground",
-    tagline: "Secure AI agent querying SQL databases via Model Context Protocol",
-    description:
-      "Full-stack AI data agent combining Google Gemini, Agno framework, and a custom Model Context Protocol (MCP) server. Executes natural language queries against SQLite with strict read-only security guardrails and single-click multi-format data exports.",
-    stack: ["Google Gemini", "MCP Protocol", "Agno", "SQLite", "Python", "Streamlit"],
-    color: "#F59E0B",
-    accent: "from-amber-500 to-orange-600",
-    github: "https://github.com/nishant264/MCP-Server-data-",
-    demo: "https://2d2qbxcdf78ghovjyfzuu3.streamlit.app/",
-    stats: { stars: 16, forks: 6 },
-    challenges: [
-      "Enforcing SQL keyword blocking and multi-statement validation for read-only safety",
-      "Building a custom local MCP server without third-party Docker or API bottlenecks",
-      "Enabling instant agent-driven export to CSV, JSON, and Markdown formats",
-    ],
-    arch: ["Natural Language Input", "Streamlit Web App", "Gemini AI Agent (Agno)", "Custom MCP Server (Guardrails)", "SQLite Database"],
-  },
-  {
     id: 4,
     title: "Autonomous Backend Architecture Swarm",
     tagline: "Multi-agent system that autonomously generates complete backend plans from a product idea",
@@ -115,7 +58,6 @@ const PROJECTS = [
     color: "#8B5CF6",
     accent: "from-violet-500 to-purple-600",
     github: "https://github.com/nishant264/agentic_service",
-    demo: "#",
     stats: { stars: 12, forks: 4 },
     challenges: [
       "Orchestrating three agents with dependency-gated task handoffs to guarantee sequential execution without deadlocks",
@@ -123,6 +65,60 @@ const PROJECTS = [
       "Building a structured prompt architecture with persona + responsibilities + constraints layers to keep agents in their lanes",
     ],
     arch: ["Product Idea", "Product Manager (DefineRequirements)", "Systems Architect (DesignArchitecture)", "DevOps Engineer (PlanDeployment)", "Complete Backend Spec"],
+  },
+  {
+    id: 2,
+    title: "Corrective RAG Agent",
+    tagline: "Self-correcting RAG system with document grading & web search fallback",
+    description:
+      "A multi-stage Retrieval-Augmented Generation system powered by LangGraph. Grades retrieved document relevance using Llama 3.3 70B via Groq, transforms query intent when needed, and dynamically falls back to Tavily web search when vector data is insufficient.",
+    stack: ["LangGraph", "LangChain", "Qdrant", "Groq (Llama 3)", "HuggingFace", "Tavily", "Streamlit"],
+    color: "#10B981",
+    accent: "from-emerald-500 to-teal-600",
+    github: "https://github.com/nishant264/Corrective-_RAG",
+    stats: { stars: 14, forks: 5 },
+    challenges: [
+      "Implementing deterministic relevance grading to eliminate hallucinations",
+      "Orchestrating smooth transitions between Qdrant vector store and Tavily web search",
+      "Building an interactive Streamlit UI showing real-time multi-agent decision steps",
+    ],
+    arch: ["User Query", "Qdrant Vector Store", "Groq (Llama 3.3 70B) Relevance Grader", "Query Rewriter / Tavily Search", "Response Generator"],
+  },
+  {
+    id: 3,
+    title: "Groq + MCP Playground",
+    tagline: "Secure AI agent querying SQL databases via Model Context Protocol",
+    description:
+      "Full-stack AI data agent combining Groq (Llama 3.3 70B), Agno framework, and direct database tools. Executes natural language queries against SQLite with strict read-only security guardrails and single-click multi-format data exports.",
+    stack: ["Groq", "Agno", "SQLite", "Python", "Streamlit"],
+    color: "#F59E0B",
+    accent: "from-amber-500 to-orange-600",
+    github: "https://github.com/nishant264/MCP-Server-data-",
+    stats: { stars: 16, forks: 6 },
+    challenges: [
+      "Enforcing SQL keyword blocking and multi-statement validation for read-only safety",
+      "Building tools with strict read-only security guardrails",
+      "Enabling instant agent-driven export to CSV, JSON, and Markdown formats",
+    ],
+    arch: ["Natural Language Input", "Streamlit Web App", "Groq AI Agent (Agno)", "Database Tools (Guardrails)", "SQLite Database"],
+  },
+  {
+    id: 1,
+    title: "AI Customer Support Platform",
+    tagline: "Multi-agent system that handles 80% of queries autonomously",
+    description:
+      "A production-grade customer support platform powered by LangGraph multi-agent workflows. Routes queries intelligently across specialized agents for FAQ, billing, and escalation — with full audit trails and human-in-the-loop fallback.",
+    stack: ["LangGraph", "FastAPI", "ChromaDB", "Gemini API", "PostgreSQL", "Docker"],
+    color: "#6366F1",
+    accent: "from-indigo-500 to-violet-600",
+    github: "https://github.com/nishant264",
+    stats: { stars: 24, forks: 8 },
+    challenges: [
+      "Designing deterministic agent routing without hallucination",
+      "Streaming partial responses to the UI under 200ms",
+      "Managing context windows across multi-turn sessions",
+    ],
+    arch: ["User Query", "Router Agent", "FAQ Agent / Billing Agent / Escalation Agent", "ChromaDB + PostgreSQL", "Response"],
   },
 ];
 
@@ -881,18 +877,10 @@ function ProjectsSection() {
                     onClick={(e) => e.stopPropagation()}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="btn-ghost"
-                    style={{ padding: "7px 14px", fontSize: 13 }}
-                  >
-                    <Github size={14} /> Code
-                  </a>
-                  <a
-                    href={project.demo}
-                    onClick={(e) => e.stopPropagation()}
                     className="btn-primary"
                     style={{ padding: "7px 14px", fontSize: 13 }}
                   >
-                    <Play size={13} /> Live Demo
+                    <Github size={14} /> GitHub
                   </a>
                   <button
                     style={{
