@@ -273,21 +273,6 @@ body::before {
   box-shadow: 0 0 12px rgba(99,102,241,0.5);
 }
 
-/* ── Blog card ─────────────────────────────────────────────── */
-.blog-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 24px;
-  transition: all 0.25s;
-  cursor: pointer;
-}
-.blog-card:hover {
-  border-color: rgba(99,102,241,0.25);
-  background: var(--bg-card-2);
-  transform: translateY(-2px);
-}
-
 /* ── Contact input ─────────────────────────────────────────── */
 .contact-input {
   width: 100%;

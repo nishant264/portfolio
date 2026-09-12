@@ -1,13 +1,12 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { motion, useInView, AnimatePresence, useScroll, useTransform } from "framer-motion";
+import { motion, useInView, AnimatePresence } from "framer-motion";
 import {
   GitBranch as Github, Link as Linkedin, Mail, ExternalLink, Download, Menu, X,
   Terminal, Cpu, Database, Code2, Zap, ArrowRight, ChevronRight,
-  Star, GitFork, Eye, MessageSquare, Clock,
-  CheckCircle2, Circle, BookOpen, Send, MapPin, Briefcase,
-  ArrowUpRight, Sparkles, Globe, Shield
+  CheckCircle2, BookOpen, Send, MapPin, Briefcase,
+  ArrowUpRight, Sparkles, Globe
 } from "lucide-react";
 
 /* ── Data ─────────────────────────────────────────────────── */
@@ -15,7 +14,6 @@ const NAV_LINKS = [
   { label: "About", href: "#about" },
   { label: "Projects", href: "#projects" },
   { label: "Skills", href: "#skills" },
-  { label: "Blog", href: "#blog" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -23,7 +21,7 @@ const SKILLS = {
   "AI & Agents": {
     color: "#6366F1",
     icon: Cpu,
-    items: ["LangGraph", "LangChain", "Agency Swarm", "Agno", "RAG Pipelines", "Prompt Engineering", "Gemini API", "OpenAI API"],
+    items: ["LangGraph", "LangChain", "Agency Swarm", "Agno", "RAG Pipelines", "Prompt Engineering", "Groq API", "Gemini API", "OpenAI API"],
   },
   "Frontend & UI": {
     color: "#06B6D4",
@@ -33,7 +31,7 @@ const SKILLS = {
   "Backend & APIs": {
     color: "#8B5CF6",
     icon: Code2,
-    items: ["Python", "FastAPI", "REST APIs", "Pydantic", "PostgreSQL", "SQLite"],
+    items: ["Python", "FastAPI", "REST APIs", "Pydantic", "PostgreSQL", "Prisma", "SQLite", "Stripe API"],
   },
   "Vector & Data": {
     color: "#10B981",
@@ -43,96 +41,167 @@ const SKILLS = {
   "Developer Workflow": {
     color: "#F59E0B",
     icon: Terminal,
-    items: ["Git", "GitHub", "Docker", "Linux", "VS Code", "Vercel"],
+    items: ["Git", "GitHub", "Docker", "Linux", "Vercel", "Streamlit Cloud", "pytest"],
   },
-};
-
-const PROJECTS = [
+};const PROJECTS = [
   {
-    id: 4,
+    id: 1,
+    title: "AI Revenue Recovery Agent",
+    tagline: "Autonomous agent that detects, diagnoses, and recovers at-risk payment revenue",
+    description:
+      "Built for the Razorpay Buildathon (Track 03): an agent pipeline — Detect → Diagnose → Decide → Gate → Execute → Verify → Report — that catches failing payment revenue, forms an LLM root-cause hypothesis, picks one bounded recovery action, and hard-blocks fraud-flagged cases from ever being auto-retried. Only two stages touch an LLM; every safety boundary is deterministic code. On a 100-scenario synthetic batch it recovered ₹1.66 Cr at a 71.1% recovery rate with a 100% fraud hold-back rate and zero agent errors.",
+    stack: ["Groq (Llama 3.3 70B)", "Python", "LLM Orchestration", "Deterministic Guardrails", "Synthetic Data Eval"],
+    color: "#F43F5E",
+    github: "https://github.com/nishant264/ai-revenue-recovery-agent-",
+    year: "2026",
+    badge: "Razorpay Buildathon",
+    highlights: [
+      "71.1% revenue recovered on a 100-scenario eval",
+      "100% fraud hold-back rate — policy gate overrides the LLM",
+      "Full per-case audit trail with 0% agent error",
+    ],
+    arch: ["At-Risk Payment Data", "Detect (deterministic)", "Diagnose (Groq LLM)", "Decide + Policy Gate", "Execute → Verify → Audit Report"],
+  },
+  {
+    id: 2,
+    title: "AI Mock Interview Coach",
+    tagline: "Adaptive multi-agent interview simulator that coaches you like a real interviewer",
+    description:
+      "Four specialized LLM agents (interviewer, prober, scorer, report writer) coordinated by a deterministic orchestrator run an adaptive 5–7 question interview that probes weak answers and escalates strong ones. Every agent contract is validated JSON with one-retry repair, a code-level scoring guard keeps small models honest, and live sessions degrade gracefully instead of failing — ending in a structured coaching report with a 7-day practice plan.",
+    stack: ["Groq", "OpenAI API", "Python", "Streamlit", "pytest"],
+    color: "#6366F1",
+    github: "https://github.com/nishant264/ai-mock-interview-coach",
+    demo: "https://ai-mock-interview-coach-jrwlojurutjeshj69zutyz.streamlit.app/",
+    year: "2026",
+    highlights: [
+      "4 specialized agents + deterministic orchestrator",
+      "Validated JSON agent contracts with retry repair",
+      "24 passing tests · live on Streamlit Cloud",
+    ],
+    arch: ["Candidate Answer", "Interviewer Agent", "Prober / Scorer Agents", "Deterministic Orchestrator", "Coaching Report + 7-Day Plan"],
+  },
+  {
+    id: 3,
     title: "Autonomous Backend Architecture Swarm",
     tagline: "Multi-agent system that autonomously generates complete backend plans from a product idea",
     description:
       "A three-agent AI system powered by Agency Swarm that takes a product idea and autonomously produces a complete backend plan — from feature requirements through system architecture to deployment infrastructure. Features structured multi-agent orchestration with dependency-gated task handoffs between Product Manager, Systems Architect, and DevOps Engineer agents, plus shared context state and full conversation logging.",
     stack: ["Agency Swarm", "Python", "Pydantic", "OpenAI API", "Streamlit"],
     color: "#8B5CF6",
-    accent: "from-violet-500 to-purple-600",
     github: "https://github.com/nishant264/agentic_service",
-    stats: { stars: 12, forks: 4 },
-    challenges: [
-      "Orchestrating three agents with dependency-gated task handoffs to guarantee sequential execution without deadlocks",
-      "Designing Pydantic-validated tools with shared context state, idempotency guards, and type-safe outputs",
-      "Building a structured prompt architecture with persona + responsibilities + constraints layers to keep agents in their lanes",
+    year: "2026",
+    highlights: [
+      "Dependency-gated task handoffs between 3 agents",
+      "Pydantic-validated tools with shared context state",
+      "Structured persona + constraints prompt architecture",
     ],
     arch: ["Product Idea", "Product Manager (DefineRequirements)", "Systems Architect (DesignArchitecture)", "DevOps Engineer (PlanDeployment)", "Complete Backend Spec"],
   },
   {
-    id: 2,
+    id: 4,
     title: "Corrective RAG Agent",
     tagline: "Self-correcting RAG system with document grading & web search fallback",
     description:
       "A multi-stage Retrieval-Augmented Generation system powered by LangGraph. Grades retrieved document relevance using Llama 3.3 70B via Groq, transforms query intent when needed, and dynamically falls back to Tavily web search when vector data is insufficient.",
-    stack: ["LangGraph", "LangChain", "Qdrant", "Groq (Llama 3)", "HuggingFace", "Tavily", "Streamlit"],
+    stack: ["LangGraph", "LangChain", "Qdrant", "Groq (Llama 3.3 70B)", "HuggingFace", "Tavily", "Streamlit"],
     color: "#10B981",
-    accent: "from-emerald-500 to-teal-600",
     github: "https://github.com/nishant264/Corrective-_RAG",
-    stats: { stars: 14, forks: 5 },
-    challenges: [
-      "Implementing deterministic relevance grading to eliminate hallucinations",
-      "Orchestrating smooth transitions between Qdrant vector store and Tavily web search",
-      "Building an interactive Streamlit UI showing real-time multi-agent decision steps",
+    year: "2026",
+    highlights: [
+      "Deterministic relevance grading to eliminate hallucinations",
+      "Smooth Qdrant → Tavily web search fallback",
+      "Streamlit UI showing real-time agent decision steps",
     ],
     arch: ["User Query", "Qdrant Vector Store", "Groq (Llama 3.3 70B) Relevance Grader", "Query Rewriter / Tavily Search", "Response Generator"],
   },
   {
-    id: 3,
+    id: 5,
     title: "Groq + MCP Playground",
     tagline: "Secure AI agent querying SQL databases via Model Context Protocol",
     description:
       "Full-stack AI data agent combining Groq (Llama 3.3 70B), Agno framework, and direct database tools. Executes natural language queries against SQLite with strict read-only security guardrails and single-click multi-format data exports.",
     stack: ["Groq", "Agno", "SQLite", "Python", "Streamlit"],
     color: "#F59E0B",
-    accent: "from-amber-500 to-orange-600",
     github: "https://github.com/nishant264/MCP-Server-data-",
-    stats: { stars: 16, forks: 6 },
-    challenges: [
-      "Enforcing SQL keyword blocking and multi-statement validation for read-only safety",
-      "Building tools with strict read-only security guardrails",
-      "Enabling instant agent-driven export to CSV, JSON, and Markdown formats",
+    year: "2026",
+    highlights: [
+      "SQL keyword blocking + multi-statement validation",
+      "Strict read-only security guardrails on every tool",
+      "Agent-driven export to CSV, JSON, and Markdown",
     ],
     arch: ["Natural Language Input", "Streamlit Web App", "Groq AI Agent (Agno)", "Database Tools (Guardrails)", "SQLite Database"],
   },
+  {
+    id: 6,
+    title: "OpenClaw-lite — Data Analysis Agent",
+    tagline: "Agentic AI that turns plain English into Python that cleans and analyzes your data",
+    description:
+      "A lightweight autonomous agent powered by Google Gemini 2.5 Flash that takes natural-language instructions and executes them on real files: it writes and runs Python (pandas/numpy) on the fly, reads CSVs and datasets, and writes back cleaned data and analysis reports. A clean three-tool action loop (run_python / read_file / write_file) with JSON-routed decisions keeps the agent predictable.",
+    stack: ["Google Gemini", "Python", "Pandas", "NumPy", "JSON Tooling"],
+    color: "#06B6D4",
+    github: "https://github.com/nishant264/agentic_ai",
+    year: "2026",
+    highlights: [
+      "Natural language → executed Python scripts",
+      "Three-tool action loop with JSON-routed decisions",
+      "Reads CSVs, writes reports and cleaned datasets",
+    ],
+    arch: ["Natural Language Input", "Gemini 2.5 Flash (JSON Decision)", "Tool Router", "run_python / read_file / write_file", "Report / Cleaned Data"],
+  },
+  {
+    id: 7,
+    title: "AI Resume Analyzer",
+    tagline: "NLP resume analysis and ATS scoring against any job description — fully local",
+    description:
+      "Upload a PDF resume and get an instant spaCy-powered analysis: section extraction, skill matching against a curated database, resume strength and skill scores, and qualitative strengths/weaknesses. Paste a job description and it computes ATS-style matching with TF-IDF + cosine similarity, a blended ATS score, and a skill-gap analysis with recommendations. Runs entirely locally — no paid APIs.",
+    stack: ["spaCy", "Python", "Streamlit", "PyPDF2", "scikit-learn"],
+    color: "#EC4899",
+    github: "https://github.com/nishant264/AI_resumeanalyzer",
+    year: "2026",
+    highlights: [
+      "TF-IDF + cosine similarity JD matching",
+      "ATS score: 60% match + 40% keyword coverage",
+      "100% local — no paid APIs, with a test suite",
+    ],
+    arch: ["PDF Resume Upload", "PyPDF2 Text Extraction", "spaCy NLP Analysis Engine", "JD Matcher (TF-IDF)", "Scores + Skill Gap Report"],
+  },
+  {
+    id: 8,
+    title: "NextStore — Full-Stack eCommerce",
+    tagline: "Production-grade eCommerce platform with Stripe payments and admin analytics",
+    description:
+      "A complete Next.js 16 eCommerce build: persistent guest + authenticated carts, multi-step Stripe checkout with webhooks, full order lifecycle, NextAuth v5 credentials + Google OAuth, verified-purchase reviews, coupons, and an admin dashboard with revenue charts and inventory tracking. Hardened with rate limiting, CSP headers, CSRF protection, and input validation; deployable on Vercel or Docker.",
+    stack: ["Next.js 16", "React 19", "TypeScript", "Prisma", "PostgreSQL", "Stripe", "NextAuth v5", "Tailwind CSS"],
+    color: "#3B82F6",
+    github: "https://github.com/nishant264/nextstore",
+    year: "2026",
+    highlights: [
+      "Stripe Payment Intents + webhooks",
+      "NextAuth v5 — credentials + Google OAuth",
+      "Admin dashboard with revenue analytics",
+      "Rate limiting, CSP & CSRF protection",
+    ],
+    arch: ["Storefront (Next.js 16)", "NextAuth v5 / API Routes", "Stripe Checkout + Webhooks", "Prisma ORM", "PostgreSQL 16"],
+  },
+  {
+    id: 9,
+    title: "Agentic Data Analyst",
+    tagline: "A LangGraph build: an autonomous data analyst with state, tools, and reflection",
+    description:
+      "A ground-up LangGraph agent built to master core agentic concepts: typed agent state, LLM integration, tool calling, graph nodes and conditional edges, plus a reflection loop where the agent checks and corrects its own analysis before answering. Structured as a learn-by-building project with every concept mapped to a single file.",
+    stack: ["LangGraph", "Python", "LLM Tool Calling"],
+    color: "#14B8A6",
+    github: "https://github.com/nishant264/junior_data-analyst",
+    year: "2026",
+    highlights: [
+      "LangGraph state, nodes & conditional edges",
+      "Self-reflection loop for error correction",
+      "Every agentic concept mapped to a file",
+    ],
+    arch: ["Question / Dataset", "LLM Node (Plan)", "Tool Node (Act)", "Reflect Node (Self-Check)", "Analysis Answer"],
+  },
 ];
 
-const BLOGS = [
-  {
-    title: "Building a Multi-Agent Customer Support System with LangGraph",
-    excerpt: "How I designed deterministic agent routing and avoided the top 5 hallucination failure modes in production.",
-    date: "Jun 2025",
-    readTime: "8 min",
-    tag: "LangGraph",
-    tagColor: "#6366F1",
-    link: "#",
-  },
-  {
-    title: "RAG vs Fine-tuning: A Practical Guide for Application Developers",
-    excerpt: "Real benchmarks comparing RAG pipelines and fine-tuned models across latency, cost, and accuracy — with code.",
-    date: "May 2025",
-    readTime: "11 min",
-    tag: "RAG",
-    tagColor: "#06B6D4",
-    link: "#",
-  },
-  {
-    title: "Text-to-SQL at Scale: Lessons from Building an AI Data Analyst",
-    excerpt: "Schema-aware prompting, join inference, and keeping hallucinations below 2% on a real production dataset.",
-    date: "Apr 2025",
-    readTime: "7 min",
-    tag: "NLP",
-    tagColor: "#8B5CF6",
-    link: "#",
-  },
-];
 
 /* ── Animation variants ────────────────────────────────────── */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -314,7 +383,7 @@ function Navbar() {
 
 function HeroSection() {
   const typed = useTypewriter(
-    ["Multi-Agent Workflows.", "RAG Pipelines.", "LLM Applications.", "Intelligent Automation."],
+    ["Agentic AI Systems.", "RAG Pipelines.", "Multi-Agent Orchestration.", "Full-Stack AI Products."],
     55,
     1800
   );
@@ -457,8 +526,8 @@ function HeroSection() {
             letterSpacing: "0.01em",
           }}
         >
-          AI & DS student @ JECRC Foundation. I build agentic AI systems that actually ship — from RAG
-          pipelines to multi-agent orchestration.
+          AI & DS undergrad @ JECRC Foundation. I build agentic AI systems that actually ship — from
+          deterministic-guardrailed agent pipelines to full-stack AI products.
         </motion.p>
 
         {/* CTA buttons */}
@@ -474,7 +543,7 @@ function HeroSection() {
           <a href="https://github.com/nishant264" className="btn-ghost" target="_blank" rel="noopener noreferrer">
             <Github size={15} /> GitHub
           </a>
-          <a href="https://linkedin.com/in/nishant-sanwaria" className="btn-ghost" target="_blank" rel="noopener noreferrer">
+          <a href="https://www.linkedin.com/in/nishantsanwaria/" className="btn-ghost" target="_blank" rel="noopener noreferrer">
             <Linkedin size={15} /> LinkedIn
           </a>
           <a href="#contact" className="btn-ghost">
@@ -496,10 +565,10 @@ function HeroSection() {
           }}
         >
           {[
-            { label: "Projects Shipped", value: "6+" },
-            { label: "GitHub Stars", value: "73+" },
-            { label: "AI APIs Integrated", value: "4" },
-            { label: "LLM Frameworks", value: "3" },
+            { label: "Projects Shipped", value: "9" },
+            { label: "AI Agents Built", value: "15+" },
+            { label: "Live Demos Deployed", value: "2" },
+            { label: "LLM Frameworks", value: "4" },
           ].map((s, i) => (
             <div
               key={s.label}
@@ -581,15 +650,16 @@ function AboutSection() {
               variants={fadeUp}
               style={{ color: "var(--text-secondary)", lineHeight: 1.75, fontSize: 15.5, marginBottom: 20 }}
             >
-              I'm a B.Tech AI & DS student at JECRC Foundation, Jaipur, passionate about building practical
-              AI systems that go beyond demos. I work with multi-agent orchestration, RAG pipelines, and
-              LLM-backed APIs — focusing on reliability, latency, and real-world deployability.
+              I&apos;m a B.Tech AI &amp; DS student at JECRC Foundation, Jaipur, focused on building agentic AI
+              systems that survive contact with production. Recent work spans deterministic-guardrailed
+              agent pipelines, corrective RAG, and a full-stack eCommerce platform — always with evals,
+              guardrails, and deployability in mind.
             </motion.p>
             <motion.p
               variants={fadeUp}
               style={{ color: "var(--text-muted)", lineHeight: 1.75, fontSize: 15, marginBottom: 32 }}
             >
-              When I'm not shipping side projects, I'm preparing for campus placements,
+              When I&apos;m not shipping side projects, I&apos;m preparing for campus placements,
               writing technical blogs, and contributing to open-source AI tooling.
             </motion.p>
             <motion.div variants={fadeUp} style={{ display: "flex", flexDirection: "column", gap: 12 }}>
@@ -627,7 +697,7 @@ function AboutSection() {
                 desc: "Creating responsive web interfaces and interactive AI dashboards using React, Next.js, and Streamlit.",
                 color: "#8B5CF6",
               },
-            ].map((card, i) => (
+            ].map((card) => (
               <motion.div
                 key={card.title}
                 variants={fadeUp}
@@ -689,7 +759,7 @@ function SkillsSection() {
             gap: 20,
           }}
         >
-          {Object.entries(SKILLS).map(([category, { color, icon: Icon, items }], ci) => (
+          {Object.entries(SKILLS).map(([category, { color, icon: Icon, items }]) => (
             <motion.div
               key={category}
               variants={fadeUp}
@@ -808,7 +878,7 @@ function ProjectsSection() {
                     }}>
                       <Zap size={11} color={project.color} />
                       <span style={{ fontSize: 11, color: project.color, fontWeight: 600, letterSpacing: "0.06em", textTransform: "uppercase" }}>
-                        AI Project {String(i + 1).padStart(2, "0")}
+                        {project.badge ?? `AI Project ${String(i + 1).padStart(2, "0")}`}
                       </span>
                     </div>
 
@@ -829,16 +899,35 @@ function ProjectsSection() {
                     </p>
                   </div>
 
-                  {/* Stats */}
-                  <div style={{ display: "flex", gap: 16, alignItems: "flex-start" }}>
-                    <div style={{ display: "flex", alignItems: "center", gap: 5, color: "var(--text-muted)", fontSize: 13 }}>
-                      <Star size={13} />
-                      {project.stats.stars}
-                    </div>
-                    <div style={{ display: "flex", alignItems: "center", gap: 5, color: "var(--text-muted)", fontSize: 13 }}>
-                      <GitFork size={13} />
-                      {project.stats.forks}
-                    </div>
+                  {/* Highlights */}
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: 7,
+                      alignItems: "flex-start",
+                      minWidth: 220,
+                      flexShrink: 0,
+                    }}
+                  >
+                    {project.highlights.map((h) => (
+                      <div key={h} style={{ display: "flex", gap: 8, alignItems: "flex-start" }}>
+                        <CheckCircle2 size={13} color={project.color} style={{ marginTop: 2, flexShrink: 0 }} />
+                        <span style={{ color: "var(--text-secondary)", fontSize: 12.5, lineHeight: 1.5 }}>{h}</span>
+                      </div>
+                    ))}
+                    <span
+                      style={{
+                        marginTop: 2,
+                        fontSize: 11,
+                        color: "var(--text-muted)",
+                        letterSpacing: "0.06em",
+                        textTransform: "uppercase",
+                        fontWeight: 600,
+                      }}
+                    >
+                      {project.year}
+                    </span>
                   </div>
                 </div>
 
@@ -860,6 +949,17 @@ function ProjectsSection() {
                   >
                     <Github size={14} /> GitHub
                   </a>
+                  {project.demo && (
+                    <a
+                      href={project.demo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn-ghost"
+                      style={{ padding: "7px 14px", fontSize: 13 }}
+                    >
+                      <ExternalLink size={14} /> Live Demo
+                    </a>
+                  )}
                 </div>
               </div>
 
@@ -878,11 +978,11 @@ function ProjectsSection() {
                         <ArchDiagram nodes={project.arch} color={project.color} />
                       </div>
 
-                      {/* Challenges */}
+                      {/* Engineering notes */}
                       <div>
-                        <p className="label" style={{ marginBottom: 16 }}>Engineering challenges</p>
+                        <p className="label" style={{ marginBottom: 16 }}>Engineering notes</p>
                         <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-                          {project.challenges.map((c, ci) => (
+                          {project.highlights.map((c: string, ci: number) => (
                             <div key={ci} style={{ display: "flex", gap: 10, alignItems: "flex-start" }}>
                               <div className="timeline-dot" style={{ marginTop: 4 }} />
                               <span style={{ fontSize: 13.5, color: "var(--text-secondary)", lineHeight: 1.6 }}>{c}</span>
@@ -890,114 +990,12 @@ function ProjectsSection() {
                           ))}
                         </div>
 
-                        {/* Placeholder screenshot zone */}
-                        <div style={{
-                          marginTop: 20,
-                          background: "var(--bg)",
-                          border: "1px dashed var(--border)",
-                          borderRadius: 12,
-                          padding: "24px",
-                          textAlign: "center",
-                          color: "var(--text-muted)",
-                          fontSize: 13,
-                          display: "flex", alignItems: "center", justifyContent: "center", gap: 8,
-                        }}>
-                          <Eye size={14} />
-                          Screenshots / demo video
-                        </div>
                     </div>
                     </div>
                   </div>
             </motion.div>
           ))}
         </div>
-      </div>
-    </section>
-  );
-}
-
-function BlogSection() {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
-
-  return (
-    <section id="blog" className="section" style={{ padding: "6rem 24px", background: "rgba(255,255,255,0.01)" }}>
-      <div ref={ref} style={{ maxWidth: 1100, margin: "0 auto" }}>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: 48, flexWrap: "wrap", gap: 16 }}
-        >
-          <div>
-            <p className="label-accent" style={{ marginBottom: 12 }}>Writing</p>
-            <h2 style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.4rem)", fontWeight: 700, letterSpacing: "-0.04em" }}>
-              From the blog
-            </h2>
-          </div>
-          <a href="#" className="btn-ghost" style={{ fontSize: 13, padding: "8px 16px" }}>
-            All posts <ArrowUpRight size={14} />
-          </a>
-        </motion.div>
-
-        <motion.div
-          variants={stagger}
-          initial="hidden"
-          animate={inView ? "visible" : "hidden"}
-          style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 16 }}
-        >
-          {BLOGS.map((post, i) => (
-            <motion.a
-              key={post.title}
-              href={post.link}
-              variants={fadeUp}
-              className="blog-card"
-              style={{ textDecoration: "none", display: "block" }}
-            >
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16, gap: 8 }}>
-                <span style={{
-                  padding: "3px 10px",
-                  background: `${post.tagColor}12`,
-                  border: `1px solid ${post.tagColor}25`,
-                  borderRadius: 6,
-                  fontSize: 11,
-                  color: post.tagColor,
-                  fontWeight: 600,
-                  letterSpacing: "0.05em",
-                  textTransform: "uppercase",
-                }}>
-                  {post.tag}
-                </span>
-                <div style={{ display: "flex", alignItems: "center", gap: 12, color: "var(--text-muted)", fontSize: 12 }}>
-                  <span style={{ display: "flex", alignItems: "center", gap: 4 }}>
-                    <Clock size={12} /> {post.readTime}
-                  </span>
-                  <span>{post.date}</span>
-                </div>
-              </div>
-
-              <h3 style={{
-                fontSize: 15.5,
-                fontWeight: 650,
-                letterSpacing: "-0.02em",
-                color: "var(--text-primary)",
-                marginBottom: 10,
-                lineHeight: 1.4,
-              }}>
-                {post.title}
-              </h3>
-              <p style={{ fontSize: 13.5, color: "var(--text-muted)", lineHeight: 1.65 }}>
-                {post.excerpt}
-              </p>
-
-              <div style={{
-                display: "flex", alignItems: "center", gap: 5,
-                color: post.tagColor, fontSize: 13, fontWeight: 500, marginTop: 18,
-              }}>
-                Read article <ArrowRight size={13} />
-              </div>
-            </motion.a>
-          ))}
-        </motion.div>
       </div>
     </section>
   );
@@ -1026,7 +1024,7 @@ function ContactSection() {
         >
           <p className="label-accent" style={{ marginBottom: 12 }}>Get in touch</p>
           <h2 style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.4rem)", fontWeight: 700, letterSpacing: "-0.04em", marginBottom: 14 }}>
-            Let's build something together
+            Let&apos;s build something together
           </h2>
           <p style={{ color: "var(--text-muted)", fontSize: 15, maxWidth: 480, margin: "0 auto" }}>
             Open to full-time roles, internships, and interesting projects. I respond within 24 hours.
@@ -1047,8 +1045,8 @@ function ContactSection() {
             </p>
 
             {[
-              { icon: Mail, label: "Email", value: "nishant@example.com", href: "mailto:nishant@example.com", color: "#6366F1" },
-              { icon: Linkedin, label: "LinkedIn", value: "/in/nishant-sanwaria", href: "https://linkedin.com/in/nishant-sanwaria", color: "#06B6D4" },
+              { icon: Mail, label: "Email", value: "sanwarianishant@gmail.com", href: "mailto:sanwarianishant@gmail.com", color: "#6366F1" },
+              { icon: Linkedin, label: "LinkedIn", value: "/in/nishantsanwaria", href: "https://www.linkedin.com/in/nishantsanwaria/", color: "#06B6D4" },
               { icon: Github, label: "GitHub", value: "github.com/nishant264", href: "https://github.com/nishant264", color: "#8B5CF6" },
             ].map(({ icon: Icon, label, value, href, color }) => (
               <a
@@ -1131,7 +1129,7 @@ function ContactSection() {
                     }}
                   >
                     <CheckCircle2 size={16} />
-                    Sent! I'll get back to you within 24 hours.
+                    Sent! I&apos;ll get back to you within 24 hours.
                   </motion.div>
                 ) : (
                   <motion.button
@@ -1182,8 +1180,8 @@ function Footer() {
         </div>
         <div style={{ display: "flex", gap: 24, alignItems: "center" }}>
           <a href="https://github.com/nishant264" target="_blank" rel="noopener noreferrer" className="footer-link">GitHub</a>
-          <a href="#" target="_blank" rel="noopener noreferrer" className="footer-link">LinkedIn</a>
-          <a href="mailto:nishant@example.com" className="footer-link">Email</a>
+          <a href="https://www.linkedin.com/in/nishantsanwaria/" target="_blank" rel="noopener noreferrer" className="footer-link">LinkedIn</a>
+          <a href="mailto:sanwarianishant@gmail.com" className="footer-link">Email</a>
           <span style={{ fontSize: 12, color: "var(--text-muted)" }}>
             Built with Next.js + Tailwind
           </span>
@@ -1203,7 +1201,6 @@ export default function Home() {
         <AboutSection />
         <ProjectsSection />
         <SkillsSection />
-        <BlogSection />
         <ContactSection />
       </main>
       <Footer />

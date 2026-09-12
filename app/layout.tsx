@@ -4,8 +4,8 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Nishant Sanwaria — AI & Agentic AI Developer",
   description:
-    "Building intelligent systems using LLMs, RAG, and Multi-Agent Workflows. B.Tech AI & DS @ JECRC University.",
-  keywords: ["AI developer", "LangChain", "LangGraph", "RAG", "Multi-Agent", "portfolio"],
+    "Building agentic AI systems that ship: deterministic-guardrailed agent pipelines, corrective RAG, and full-stack AI products. B.Tech AI & DS @ JECRC University.",
+  keywords: ["AI developer", "LangChain", "LangGraph", "RAG", "Multi-Agent", "Agentic AI", "portfolio"],
   authors: [{ name: "Nishant Sanwaria" }],
 };
 
