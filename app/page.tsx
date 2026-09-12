@@ -876,8 +876,8 @@ function ProjectsSection() {
                       borderRadius: 6,
                       marginBottom: 12,
                     }}>
-                      <Zap size={11} color={project.color} />
-                      <span style={{ fontSize: 11, color: project.color, fontWeight: 600, letterSpacing: "0.06em", textTransform: "uppercase" }}>
+                      <Zap size={12} color={project.color} />
+                      <span style={{ fontSize: 12, color: project.color, fontWeight: 600, letterSpacing: "0.06em", textTransform: "uppercase" }}>
                         {project.badge ?? `AI Project ${String(i + 1).padStart(2, "0")}`}
                       </span>
                     </div>
@@ -891,10 +891,10 @@ function ProjectsSection() {
                     }}>
                       {project.title}
                     </h3>
-                    <p style={{ fontSize: 14, color: project.color, fontWeight: 500, marginBottom: 14 }}>
+                    <p style={{ fontSize: 15.5, color: project.color, fontWeight: 500, marginBottom: 14 }}>
                       {project.tagline}
                     </p>
-                    <p style={{ fontSize: 14.5, color: "var(--text-muted)", lineHeight: 1.7, maxWidth: 640 }}>
+                    <p style={{ fontSize: 16, color: "var(--text-muted)", lineHeight: 1.75, maxWidth: 640 }}>
                       {project.description}
                     </p>
                   </div>
@@ -912,14 +912,14 @@ function ProjectsSection() {
                   >
                     {project.highlights.map((h) => (
                       <div key={h} style={{ display: "flex", gap: 8, alignItems: "flex-start" }}>
-                        <CheckCircle2 size={13} color={project.color} style={{ marginTop: 2, flexShrink: 0 }} />
-                        <span style={{ color: "var(--text-secondary)", fontSize: 12.5, lineHeight: 1.5 }}>{h}</span>
+                        <CheckCircle2 size={15} color={project.color} style={{ marginTop: 2, flexShrink: 0 }} />
+                        <span style={{ color: "var(--text-secondary)", fontSize: 14, lineHeight: 1.55 }}>{h}</span>
                       </div>
                     ))}
                     <span
                       style={{
                         marginTop: 2,
-                        fontSize: 11,
+                        fontSize: 12,
                         color: "var(--text-muted)",
                         letterSpacing: "0.06em",
                         textTransform: "uppercase",
@@ -945,7 +945,7 @@ function ProjectsSection() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="btn-primary"
-                    style={{ padding: "7px 14px", fontSize: 13 }}
+                    style={{ padding: "8px 16px", fontSize: 14 }}
                   >
                     <Github size={14} /> GitHub
                   </a>
@@ -955,7 +955,7 @@ function ProjectsSection() {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="btn-ghost"
-                      style={{ padding: "7px 14px", fontSize: 13 }}
+                      style={{ padding: "8px 16px", fontSize: 14 }}
                     >
                       <ExternalLink size={14} /> Live Demo
                     </a>
@@ -985,7 +985,7 @@ function ProjectsSection() {
                           {project.highlights.map((c: string, ci: number) => (
                             <div key={ci} style={{ display: "flex", gap: 10, alignItems: "flex-start" }}>
                               <div className="timeline-dot" style={{ marginTop: 4 }} />
-                              <span style={{ fontSize: 13.5, color: "var(--text-secondary)", lineHeight: 1.6 }}>{c}</span>
+                              <span style={{ fontSize: 15, color: "var(--text-secondary)", lineHeight: 1.65 }}>{c}</span>
                             </div>
                           ))}
                         </div>
