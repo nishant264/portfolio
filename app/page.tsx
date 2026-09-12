@@ -666,7 +666,7 @@ function AboutSection() {
               {[
                 { icon: MapPin, text: "Jaipur, Rajasthan, India" },
                 { icon: Briefcase, text: "Open to full-time / internship roles" },
-                { icon: BookOpen, text: "B.Tech AI & DS — JECRC Foundation (2025)" },
+                { icon: BookOpen, text: "B.Tech AI & DS — JECRC Foundation (2023–2027)" },
               ].map(({ icon: Icon, text }) => (
                 <div key={text} style={{ display: "flex", alignItems: "center", gap: 10, color: "var(--text-muted)", fontSize: 14 }}>
                   <Icon size={15} color="#6366F1" />
